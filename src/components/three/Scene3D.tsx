@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 import ConstructionCrane from './ConstructionCrane';
 
@@ -12,13 +12,12 @@ const Scene3D = ({ className }: Scene3DProps) => {
     <div className={className}>
       <Canvas camera={{ position: [8, 5, 8], fov: 50 }}>
         <Suspense fallback={null}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} />
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ffa500" />
           
           <ConstructionCrane />
           
-          <Environment preset="sunset" />
           <OrbitControls 
             enablePan={false} 
             enableZoom={false}
