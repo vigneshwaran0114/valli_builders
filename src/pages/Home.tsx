@@ -2,19 +2,68 @@ import HeroSection from '@/components/HeroSection';
 import ServicesOverview from '@/components/ServicesOverview';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import Scene3D from '@/components/three/Scene3D';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Users, Clock, Award, TrendingUp } from 'lucide-react';
 
 const Home = () => {
   const stats = [
-    { icon: Users, value: '500+', label: 'Projects Completed' },
-    { icon: Clock, value: '25+', label: 'Years Experience' },
+    { icon: Users, value: '27+', label: 'Projects Completed' },
+    { icon: Clock, value: '7+', label: 'Years Experience' },
     { icon: Award, value: '98%', label: 'Client Satisfaction' },
     { icon: TrendingUp, value: '100%', label: 'On-Time Delivery' }
   ];
 
+  // Structured data for the organization
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Valli Builders",
+    "alternateName": "Valli Construction & Digital Surveyor",
+    "url": "https://vallibuilders.com",
+    "logo": "https://vallibuilders.com/logo.png",
+    "description": "Leading civil engineering firm in Palani, Tamil Nadu specializing in construction, structural design, project management, and site supervision.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "N/S Complex, Near Wakeman School",
+      "addressLocality": "Palani",
+      "postalCode": "624601",
+      "addressRegion": "Tamil Nadu",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-9003487292",
+      "contactType": "customer service",
+      "email": "vallibuilders1@gmail.com"
+    },
+    "sameAs": [
+      "https://facebook.com/vallibuilders",
+      "https://linkedin.com/company/vallibuilders"
+    ],
+    "foundingDate": "2019",
+    "numberOfEmployees": "30+",
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 10.4548,
+        "longitude": 77.5201
+      },
+      "geoRadius": "50000"
+    }
+  };
+
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO 
+        title="Home"
+        description="Leading civil engineering firm in Palani, Tamil Nadu specializing in construction, structural design, project management, and site supervision. 27+ projects completed with 100% client satisfaction."
+        keywords="civil engineering, construction, structural design, project management, Palani, Tamil Nadu, Valli Builders, construction company, building contractors, engineering services"
+        canonical="/"
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <HeroSection />
 
@@ -115,7 +164,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

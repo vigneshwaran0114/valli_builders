@@ -25,15 +25,9 @@ const ServicesOverview = () => {
     },
     {
       icon: Settings,
-      title: 'MEP Engineering',
-      description: 'Mechanical, electrical, and plumbing engineering services for complete building systems.',
-      features: ['HVAC Design', 'Electrical Systems', 'Plumbing Design']
-    },
-    {
-      icon: CheckCircle,
-      title: 'Compliance & Permits',
-      description: 'Navigate regulatory requirements and obtain necessary permits for your project.',
-      features: ['Building Permits', 'Code Compliance', 'Regulatory Support']
+      title: 'Digital Survey (DGPS)',
+      description: 'High-precision land surveying using Differential GPS for accurate mapping and data collection.',
+      features: ['Boundary Survey', 'Topographic Mapping', 'Contour Generation']
     },
     {
       icon: Users,

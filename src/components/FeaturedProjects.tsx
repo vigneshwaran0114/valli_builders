@@ -1,43 +1,57 @@
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Calendar, MapPin, ArrowRight, Building, Home, Factory } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import {
+  Calendar,
+  MapPin,
+  ArrowRight,
+  Building,
+  Home,
+  Factory,
+} from "lucide-react";
 
 const FeaturedProjects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Metro Bridge Construction',
-      category: 'Infrastructure',
-      location: 'Downtown Metro Line',
-      year: '2024',
-      image: '/placeholder.svg',
-      description: 'A 2.5km elevated metro bridge featuring state-of-the-art engineering and sustainable construction practices.',
+      title: "Institution",
+      category: "Infrastructure",
+      location: "Palani",
+      year: "2023",
+      image: "/placeholder.svg",
+      description:
+        "Educational institution featuring durable construction, efficient space planning, and compliance with academic infrastructure standards.",
       icon: Building,
-      tags: ['Bridge Engineering', 'Urban Transit', 'Concrete Structures']
+      tags: [
+        "Institutional Design",
+        "Public Infrastructure",
+        "Space Optimization",
+      ],
     },
     {
       id: 2,
-      title: 'Residential Complex',
-      category: 'Residential',
-      location: 'Green Valley District',
-      year: '2023',
-      image: '/placeholder.svg',
-      description: 'Modern 300-unit residential complex with eco-friendly design and smart building technologies.',
+      title: "Residential Complex",
+      category: "Residential",
+      location: "Dindigul",
+      year: "2023",
+      image: "/placeholder.svg",
+      description:
+        "Modern 300-unit residential complex with eco-friendly design and smart building technologies.",
       icon: Home,
-      tags: ['Residential Design', 'Green Building', 'Smart Systems']
+      tags: ["Residential Design", "Green Building", "Smart Systems"],
     },
     {
       id: 3,
-      title: 'Industrial Manufacturing Hub',
-      category: 'Industrial',
-      location: 'Tech Industrial Park',
-      year: '2023',
-      image: '/placeholder.svg',
-      description: 'Large-scale manufacturing facility with advanced structural systems and automated construction.',
+      title: "Industrial Manufacturing Hub",
+      category: "Industrial",
+      location: "Kallimandhayam, Palani",
+      year: "2023",
+      image: "/placeholder.svg",
+      description:
+        "Large-scale manufacturing facility with advanced structural systems and automated construction.",
       icon: Factory,
-      tags: ['Industrial Design', 'Steel Structures', 'Automation']
-    }
+      tags: ["Industrial Design", "Steel Structures", "Automation"],
+    },
   ];
 
   return (
@@ -54,8 +68,9 @@ const FeaturedProjects = () => {
             Featured Projects
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Showcase of our recent construction achievements that demonstrate our expertise
-            in delivering complex civil engineering projects on time and within budget.
+            Showcase of our recent construction achievements that demonstrate
+            our expertise in delivering complex civil engineering projects on
+            time and within budget.
           </p>
         </motion.div>
 
@@ -86,7 +101,7 @@ const FeaturedProjects = () => {
                 <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                
+
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
@@ -113,8 +128,8 @@ const FeaturedProjects = () => {
                   ))}
                 </div>
 
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                 >
                   View Project Details
@@ -133,9 +148,7 @@ const FeaturedProjects = () => {
           className="text-center"
         >
           <Button className="btn-hero" size="lg" asChild>
-            <Link to="/projects">
-              View All Projects
-            </Link>
+            <Link to="/projects">View All Projects</Link>
           </Button>
         </motion.div>
       </div>

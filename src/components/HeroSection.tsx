@@ -1,18 +1,19 @@
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Shield, Award } from 'lucide-react';
-import heroImage from '@/assets/hero-construction.jpg';
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight, Play, Shield, Award } from "lucide-react";
+import heroImage from "@/assets/hero-construction.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img 
+        <img
           src={heroImage}
-          alt="Construction Site"
+          alt="Professional construction site showing Valli Builders civil engineering work in Palani, Tamil Nadu"
           className="w-full h-full object-cover"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20" />
@@ -26,49 +27,41 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
-            Building the{' '}
-            <span className="text-gradient-hero">
-              Future
-            </span>
-            <br />
-            One Project at a Time
+            Valli Construction & Digital Surveyor
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed"
           >
-            Professional civil engineering solutions for complex construction projects.
-            From planning to completion, we deliver excellence in every build.
+            Professional civil engineering solutions for complex construction
+            projects. From planning to completion, we deliver excellence in
+            every build.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
-            <Button 
-              className="btn-hero group"
-              size="lg"
-              asChild
-            >
+            <Button className="btn-hero group" size="lg" asChild>
               <Link to="/projects" className="flex items-center space-x-2">
                 <span>View Our Projects</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
 
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="bg-white/10 border-white/30 text-white hover:bg-white/20"
               asChild
@@ -81,16 +74,16 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Stats */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
           >
             {[
-              { icon: Shield, label: 'Safety First', value: '100%' },
-              { icon: Award, label: 'Projects Completed', value: '500+' },
-              { icon: Award, label: 'Years Experience', value: '25+' }
+              { icon: Shield, label: "Safety First", value: "100%" },
+              { icon: Award, label: "Projects Completed", value: "27+" },
+              { icon: Award, label: "Years Experience", value: "7+" },
             ].map((stat, index) => (
               <motion.div
                 key={index}

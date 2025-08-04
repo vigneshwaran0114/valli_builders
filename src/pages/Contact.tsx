@@ -1,22 +1,71 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Mail, Phone, MapPin, Clock, Send, User, MessageSquare,
-  Building2, CheckCircle, AlertCircle 
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  Clock,
+  Send,
+  User,
+  MessageSquare,
+  Building2,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import GoogleMap from "@/components/GoogleMap.jsx";
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
+import SEO from "@/components/SEO";
 
 const Contact = () => {
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
+
+  // Structured data for Contact page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Valli Builders",
+    "description": "Get in touch with Valli Builders for professional civil engineering services in Palani, Tamil Nadu. Contact us for construction projects, structural design, and project management.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Valli Builders",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "N/S Complex, Near Wakeman School",
+        "addressLocality": "Palani",
+        "postalCode": "624601",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-9003487292",
+          "contactType": "customer service",
+          "availableLanguage": "English, Tamil"
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "vallibuilders1@gmail.com",
+          "contactType": "customer service"
+        }
+      ]
+    }
+  };
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    projectType: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    projectType: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -24,44 +73,48 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Phone',
-      details: '+1 (555) 123-4567',
-      subtitle: 'Mon-Fri 8AM-6PM'
+      title: "Phone",
+      details: "+91 9003487292",
+      subtitle: "Mon-Sat 9AM-6PM",
     },
     {
       icon: Mail,
-      title: 'Email',
-      details: 'info@civilworkspro.com',
-      subtitle: '24/7 Support'
+      title: "Email",
+      details: "vallibuilders1@gmail.com",
+      subtitle: "24/7 Support",
     },
     {
-      icon: MapPin,
-      title: 'Office',
-      details: '123 Engineering Plaza',
-      subtitle: 'Tech City, TC 12345'
+      icon: Building2,
+      title: "Office",
+      details: "N/S Complex, Near Wakeman School",
+      subtitle: "Palani - 624601",
     },
     {
       icon: Clock,
-      title: 'Hours',
-      details: 'Mon-Fri 8AM-6PM',
-      subtitle: 'Weekend Emergency'
-    }
+      title: "Hours",
+      details: "Mon-Sat 9AM-6PM",
+      subtitle: "Weekend Emergency",
+    },
   ];
 
   const projectTypes = [
-    'Residential Construction',
-    'Commercial Building',
-    'Infrastructure Project',
-    'Industrial Facility',
-    'Renovation/Retrofit',
-    'Consultation Only',
-    'Other'
+    "Residential Construction",
+    "Commercial Building",
+    "Infrastructure Project",
+    "Industrial Facility",
+    "Renovation/Retrofit",
+    "Consultation Only",
+    "Other",
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -69,33 +122,69 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // EmailJS configuration
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone,
+        from_company: formData.company,
+        project_type: formData.projectType,
+        message: formData.message,
+        to_name: "Valli Builders Team",
+      };
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result);
+      
       toast({
         title: "Message Sent Successfully!",
         description: "We'll get back to you within 24 hours.",
         duration: 5000,
       });
-      
+
       // Reset form
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        projectType: '',
-        message: ''
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        projectType: "",
+        message: "",
       });
-    }, 2000);
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      toast({
+        title: "Failed to Send Message",
+        description: "Please try again later or contact us directly.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <>
+      <SEO 
+        title="Contact Us"
+        description="Contact Valli Builders for professional civil engineering services in Palani, Tamil Nadu. Get quotes for construction projects, structural design, and project management. Call +91 9003487292 or email vallibuilders1@gmail.com"
+        keywords="contact Valli Builders, construction company contact, civil engineering services Palani, get quote construction, engineering consultation"
+        canonical="/contact"
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen pt-20">
       {/* Header */}
       <section className="py-20 bg-gradient-hero text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -103,14 +192,15 @@ const Contact = () => {
           >
             Contact Us
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl max-w-3xl mx-auto opacity-90"
           >
-            Ready to start your construction project? Get in touch with our expert team 
-            for a consultation and see how we can bring your vision to life.
+            Ready to start your construction project? Get in touch with our
+            expert team for a consultation and see how we can bring your vision
+            to life.
           </motion.p>
         </div>
       </section>
@@ -152,9 +242,7 @@ const Contact = () => {
                 <p className="text-muted-foreground font-medium mb-1">
                   {info.details}
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  {info.subtitle}
-                </p>
+                <p className="text-sm text-muted-foreground">{info.subtitle}</p>
               </motion.div>
             ))}
           </div>
@@ -356,22 +444,17 @@ const Contact = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              {/* Interactive Map Placeholder */}
+              {/* Google Maps Integration */}
               <div className="card-construction">
                 <h3 className="text-xl font-semibold mb-4 text-foreground">
                   Visit Our Office
                 </h3>
-                <div className="h-64 bg-gradient-steel rounded-lg flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <MapPin className="h-12 w-12 mx-auto mb-2" />
-                    <p className="font-medium">Interactive Map</p>
-                    <p className="text-sm opacity-80">123 Engineering Plaza, Tech City</p>
-                  </div>
-                </div>
+                <GoogleMap locationUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.5806367203536!2d77.51130357535521!3d10.454813989675118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9dfb55104adab%3A0xdd0ed9fd0a9f170b!2sValli%20construction%20%26%20Renovators!5e0!3m2!1sen!2sin!4v1754310655323!5m2!1sen!2sin" />
                 <div className="mt-4 text-sm text-muted-foreground">
+                  <p>• N/S Complex, Near Wakeman School</p>
+                  <p>• Palani - 624601, Tamil Nadu</p>
                   <p>• Free parking available</p>
                   <p>• Wheelchair accessible</p>
-                  <p>• Public transit nearby</p>
                 </div>
               </div>
 
@@ -402,29 +485,12 @@ const Contact = () => {
                   </li>
                 </ul>
               </div>
-
-              {/* Emergency Contact */}
-              <div className="card-construction bg-gradient-hero text-primary-foreground">
-                <h3 className="text-xl font-semibold mb-4">
-                  Emergency Support
-                </h3>
-                <p className="mb-4 opacity-90">
-                  For urgent engineering issues or project emergencies, call our 24/7 hotline.
-                </p>
-                <Button 
-                  variant="outline" 
-                  className="border-white/30 text-white hover:bg-white/10"
-                  size="lg"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Emergency Hotline
-                </Button>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

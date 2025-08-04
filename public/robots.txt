@@ -1,14 +1,51 @@
+# Valli Builders - Robots.txt
+# Last updated: January 15, 2025
+
+# Allow all major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+# Allow all other bots
 User-agent: *
 Allow: /
+
+# Disallow admin and private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Sitemap location
+Sitemap: https://vallibuilders.com/sitemap.xml
+
+# Crawl delay (be respectful to servers)
+Crawl-delay: 1
+
+# Host directive (preferred domain)
+Host: https://vallibuilders.com

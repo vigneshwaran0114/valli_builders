@@ -47,7 +47,7 @@ const Navbar = () => {
               <Building2 className="h-6 w-6 text-primary-foreground" />
             </motion.div>
             <span className="text-xl font-bold text-gradient-hero">
-              CivilWorks Pro
+              Valli Associates
             </span>
           </Link>
 

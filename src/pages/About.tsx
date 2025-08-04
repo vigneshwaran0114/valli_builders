@@ -1,107 +1,204 @@
-import { motion } from 'framer-motion';
-import { 
-  Users, Target, Award, TrendingUp, Calendar, MapPin, 
-  CheckCircle, Shield, Clock, Star, Building2, Lightbulb 
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Scene3D from '@/components/three/Scene3D';
+import { motion } from "framer-motion";
+import {
+  Users,
+  Target,
+  Award,
+  TrendingUp,
+  Calendar,
+  MapPin,
+  CheckCircle,
+  Shield,
+  Clock,
+  Star,
+  Building2,
+  Lightbulb,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Scene3D from "@/components/three/Scene3D";
+import SEO from "@/components/SEO";
 
 const About = () => {
+  // Structured data for About page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Valli Builders",
+    "description": "Learn about Valli Builders - a leading civil engineering firm in Palani, Tamil Nadu with 7+ years of experience and 27+ completed projects.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Valli Builders",
+      "foundingDate": "2019",
+      "description": "Leading civil engineering firm specializing in construction, structural design, project management, and site supervision.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "N/S Complex, Near Wakeman School",
+        "addressLocality": "Palani",
+        "postalCode": "624601",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      }
+    }
+  };
+
   const milestones = [
-    { year: '1999', title: 'Company Founded', description: 'Started as a small engineering consultancy with 5 team members.' },
-    { year: '2005', title: 'First Major Project', description: 'Completed our first major infrastructure project - City Bridge.' },
-    { year: '2010', title: 'Team Expansion', description: 'Grew to 50+ engineers and opened second office location.' },
-    { year: '2015', title: 'Innovation Award', description: 'Received National Engineering Excellence Award for sustainable design.' },
-    { year: '2020', title: 'Digital Transformation', description: 'Implemented cutting-edge 3D modeling and project management systems.' },
-    { year: '2024', title: 'Industry Leadership', description: '500+ completed projects and recognized as regional industry leader.' }
+    {
+      year: "2019",
+      title: "Company Founded",
+      description:
+        "Started as a small engineering consultancy with 3 team members.",
+    },
+    {
+      year: "2021",
+      title: "First Major Project",
+      description: "Completed our first major infrastructure project - Palani",
+    },
+    {
+      year: "2022",
+      title: "Team Expansion",
+      description: "Grew to 5 engineers and 30+ Labours.",
+    },
+    {
+      year: "2023",
+      title: "Innovation Award",
+      description:
+        "Received Engineering Excellence Award for sustainable design.",
+    },
+    {
+      year: "2024",
+      title: "Digital Transformation",
+      description: "Implemented DGPS and project management systems.",
+    },
+    {
+      year: "2025",
+      title: "Industry Leadership",
+      description:
+        "27+ completed projects and recognized as regional industry leader.",
+    },
   ];
 
   const team = [
     {
-      name: 'Dr. Sarah Chen',
-      position: 'Chief Executive Officer',
-      experience: '20+ years',
-      specialty: 'Structural Engineering',
-      description: 'Leading structural engineer with expertise in high-rise construction and seismic design.'
+      name: "Dr. Sarah Chen",
+      position: "Chief Executive Officer",
+      experience: "20+ years",
+      specialty: "Structural Engineering",
+      description:
+        "Leading structural engineer with expertise in high-rise construction and seismic design.",
     },
     {
-      name: 'Michael Rodriguez',
-      position: 'Chief Technology Officer',
-      experience: '18+ years',
-      specialty: 'Project Management',
-      description: 'Expert in large-scale project coordination with a track record of on-time delivery.'
+      name: "Michael Rodriguez",
+      position: "Chief Technology Officer",
+      experience: "18+ years",
+      specialty: "Project Management",
+      description:
+        "Expert in large-scale project coordination with a track record of on-time delivery.",
     },
     {
-      name: 'Dr. James Wilson',
-      position: 'Lead Design Engineer',
-      experience: '15+ years',
-      specialty: 'MEP Systems',
-      description: 'Specialist in mechanical, electrical, and plumbing systems for complex buildings.'
+      name: "Dr. James Wilson",
+      position: "Lead Design Engineer",
+      experience: "15+ years",
+      specialty: "MEP Systems",
+      description:
+        "Specialist in mechanical, electrical, and plumbing systems for complex buildings.",
     },
     {
-      name: 'Anna Thompson',
-      position: 'Quality Assurance Director',
-      experience: '12+ years',
-      specialty: 'Safety & Compliance',
-      description: 'Ensures all projects meet the highest safety standards and regulatory compliance.'
-    }
+      name: "Anna Thompson",
+      position: "Quality Assurance Director",
+      experience: "12+ years",
+      specialty: "Safety & Compliance",
+      description:
+        "Ensures all projects meet the highest safety standards and regulatory compliance.",
+    },
   ];
 
   const values = [
     {
       icon: Shield,
-      title: 'Safety First',
-      description: 'Safety is our top priority in every project, ensuring zero-incident work environments.',
-      stat: '100% Safety Record'
+      title: "Safety First",
+      description:
+        "Safety is our top priority in every project, ensuring zero-incident work environments.",
+      stat: "100% Safety Record",
     },
     {
       icon: Star,
-      title: 'Excellence',
-      description: 'We strive for excellence in every aspect of our work, from design to completion.',
-      stat: '98% Client Satisfaction'
+      title: "Excellence",
+      description:
+        "We strive for excellence in every aspect of our work, from design to completion.",
+      stat: "98% Client Satisfaction",
     },
     {
       icon: Lightbulb,
-      title: 'Innovation',
-      description: 'Embracing new technologies and methodologies to deliver cutting-edge solutions.',
-      stat: '50+ Patents Filed'
+      title: "Innovation",
+      description:
+        "Embracing new technologies and methodologies to deliver cutting-edge solutions.",
+      stat: "25+ Patents Filed",
     },
     {
       icon: Users,
-      title: 'Collaboration',
-      description: 'Working closely with clients, stakeholders, and communities for successful outcomes.',
-      stat: '500+ Partnerships'
-    }
+      title: "Collaboration",
+      description:
+        "Working closely with clients, stakeholders, and communities for successful outcomes.",
+      stat: "3+ Partnerships",
+    },
   ];
 
   const stats = [
-    { icon: Building2, value: '500+', label: 'Projects Completed' },
-    { icon: Users, value: '150+', label: 'Team Members' },
-    { icon: Award, value: '25+', label: 'Industry Awards' },
-    { icon: Calendar, value: '25+', label: 'Years Experience' }
+    { icon: Building2, value: "27+", label: "Projects Completed" },
+    { icon: Users, value: "25+", label: "Team Members" },
+    { icon: Award, value: "4+", label: "Industry Awards" },
+    { icon: Calendar, value: "7+", label: "Years Experience" },
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <>
+      <SEO 
+        title="About Us"
+        description="Learn about Valli Builders - a leading civil engineering firm in Palani, Tamil Nadu with 7+ years of experience and 27+ completed projects. Our team of experts delivers excellence in construction and engineering."
+        keywords="about Valli Builders, civil engineering company Palani, construction company Tamil Nadu, engineering team, company history, construction experience"
+        canonical="/about"
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen pt-20">
       {/* Header */}
       <section className="py-20 bg-gradient-hero text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            About CivilWorks Pro
+            About Valli Associates
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl max-w-3xl mx-auto opacity-90"
           >
-            For over 25 years, we've been building the future through innovative civil engineering 
-            solutions, delivering exceptional results for complex construction projects worldwide.
+            We are not just a young team—we are a team of energetic, technically
+            proficient young civil engineers. I, Er. V. Kannan, BE, AMIE, CE,
+            Registered Engineer, lead M/s Valli Construction & Digital Surveyor
+            (DGPS Expert), where integrity, discipline, and punctuality are the
+            unshakable values that define our work. We stand firm by the
+            philosophy that ‘We may not live forever, but our work will speak
+            for us.’ With no external help, we have mastered end-to-end project
+            delivery—including planning, surveying, contour details, elevation
+            design, top view modeling, quality control, and measurement
+            verification.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl max-w-3xl mx-auto opacity-90"
+          >
+            Our uniqueness lies in the special attention we provide to NRI
+            clients and rural people. We serve as a trustworthy, honest
+            construction partner for hardworking NRIs living abroad. Similarly,
+            we are dedicated to providing uncompromised, top-quality service to
+            rural clients who are often unaware of being deceived. Everyone is
+            important, but these clients are our heartfelt responsibility.
           </motion.p>
         </div>
       </section>
@@ -121,11 +218,14 @@ const About = () => {
                 <div className="bg-gradient-hero w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                   <Target className="h-8 w-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Our Mission</h3>
+                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                  Our Mission
+                </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To deliver innovative, sustainable, and safe civil engineering solutions that 
-                  transform communities and exceed client expectations while maintaining the 
-                  highest standards of professional excellence.
+                  To deliver innovative, sustainable, and safe civil engineering
+                  solutions that transform communities and exceed client
+                  expectations while maintaining the highest standards of
+                  professional excellence.
                 </p>
               </div>
 
@@ -133,11 +233,14 @@ const About = () => {
                 <div className="bg-gradient-construction w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                   <TrendingUp className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Our Vision</h3>
+                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                  Our Vision
+                </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To be the leading civil engineering firm recognized globally for innovation, 
-                  sustainability, and excellence in complex construction projects that shape 
-                  the future of infrastructure development.
+                  To be the leading civil engineering firm recognized globally
+                  for innovation, sustainability, and excellence in complex
+                  construction projects that shape the future of infrastructure
+                  development.
                 </p>
               </div>
             </motion.div>
@@ -155,6 +258,39 @@ const About = () => {
         </div>
       </section>
 
+      <section className="py-20 bg-gradient-hero text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl font-bold mb-6"
+          >
+            Special Focus
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl max-w-3xl mx-auto opacity-90 mb-5"
+          >
+            NRI Clients: For NRIs who leave behind their families and work hard
+            abroad, we aim to be a reliable and trustworthy partner back home.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl max-w-3xl mx-auto opacity-90"
+          >
+            Rural Communities: For the innocent rural people who often don’t
+            even realize when they're being cheated, we commit to delivering
+            them first-class service. Everyone matters—but they are our special
+            responsibility.
+          </motion.p>
+        </div>
+      </section>
+
       {/* Company Stats */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -169,7 +305,8 @@ const About = () => {
               Our Track Record
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Numbers that speak to our commitment to excellence and client satisfaction
+              Numbers that speak to our commitment to excellence and client
+              satisfaction
             </p>
           </motion.div>
 
@@ -212,7 +349,8 @@ const About = () => {
               Our Journey
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Key milestones that have shaped our growth and success over the years
+              Key milestones that have shaped our growth and success over the
+              years
             </p>
           </motion.div>
 
@@ -229,10 +367,10 @@ const About = () => {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                    index % 2 === 1 ? 'lg:text-right' : ''
+                    index % 2 === 1 ? "lg:text-right" : ""
                   }`}
                 >
-                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                     <div className="glass-construction p-6">
                       <div className="text-2xl font-bold text-gradient-construction mb-2">
                         {milestone.year}
@@ -247,7 +385,11 @@ const About = () => {
                   </div>
 
                   {/* Timeline Node */}
-                  <div className={`hidden lg:flex justify-center ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div
+                    className={`hidden lg:flex justify-center ${
+                      index % 2 === 1 ? "lg:order-1" : ""
+                    }`}
+                  >
                     <div className="bg-gradient-construction w-8 h-8 rounded-full flex items-center justify-center relative z-10">
                       <CheckCircle className="h-4 w-4 text-white" />
                     </div>
@@ -255,61 +397,6 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-hero">
-              Meet Our Leadership
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our experienced leadership team brings decades of expertise in civil engineering and project management
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card-construction"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-hero w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Users className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-1 text-foreground">
-                      {member.name}
-                    </h3>
-                    <div className="text-primary font-medium mb-2">
-                      {member.position}
-                    </div>
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-3">
-                      <span>{member.experience}</span>
-                      <span>•</span>
-                      <span>{member.specialty}</span>
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -328,7 +415,8 @@ const About = () => {
               Our Core Values
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The principles that guide every decision we make and every project we undertake
+              The principles that guide every decision we make and every project
+              we undertake
             </p>
           </motion.div>
 
@@ -378,20 +466,22 @@ const About = () => {
               Join Our Success Story
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Ready to be part of our next engineering milestone? Let's build something extraordinary together.
+              Ready to be part of our next engineering milestone? Let's build
+              something extraordinary together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="btn-construction" size="lg">
                 Start Your Project
               </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
+              {/* <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
                 Join Our Team
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
